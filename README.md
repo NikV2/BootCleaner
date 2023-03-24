@@ -1,0 +1,4 @@
+# BootCleaner
+A simple program that cleans your computer's temporary files.
+
+**NOTE: This program is designed to run on your computer's startup, so if you end up using it make sure to make it execute itself on startup**
