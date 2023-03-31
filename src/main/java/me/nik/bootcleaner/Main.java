@@ -14,8 +14,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         MiscUtils.executeCmdCommand("cmd /C start ipconfig /flushdns");
+        MiscUtils.executeCmdCommand("cmd /C rd /s /q %systemdrive%\\$RECYCLE.BIN");
 
         int cleanedFiles;
 
