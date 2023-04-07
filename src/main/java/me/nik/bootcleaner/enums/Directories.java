@@ -10,6 +10,10 @@ public enum Directories {
     WINDOWS_TEMP(MiscUtils.ROOT + "Windows\\temp"),
     FILE_EXPLORER_CACHE(MiscUtils.USER + "AppData\\Roaming\\Microsoft\\Windows\\Recent\\AutomaticDestinations"),
     NET_CACHE(MiscUtils.USER + "AppData\\Local\\Microsoft\\Windows\\INetCache\\IE"),
+
+    DIRECTX_SHADER_CACHE(MiscUtils.USER + "AppData\\Local\\D3DSCache"),
+
+    WINDOWS_UPDATE_CACHE(MiscUtils.ROOT + "Windows\\SoftwareDistribution\\Download"),
     TEMP(MiscUtils.USER + "AppData\\Local\\Temp");
 
     private final String directory;
