@@ -1,16 +1,12 @@
 package me.nik.bootcleaner;
 
 import me.nik.bootcleaner.config.ConfigurationBuilder;
-import me.nik.bootcleaner.enums.Directories;
 import me.nik.bootcleaner.utils.FileUtils;
 import me.nik.bootcleaner.utils.MiscUtils;
 
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 public class Main {
 
@@ -28,36 +24,35 @@ public class Main {
             System.exit(1);
         }
 
-        if (Config.cleanDnsCache) MiscUtils.executeCmdCommand("cmd /C start ipconfig /flushdns");
+	File recycleBinPath = new File("%systemdrive%\\$RECYCLE.BIN"), windowsTempPath = new File("%systemdrive%\\Windows\\Temp"),
+	     localTempPath = new File(MiscUtils.USER + "Appdata\\Local\\Temp"), prefetchPath = new File("%systemdrive%\\Windows\\Prefetch"),
+	     thumbnailCachePath = new File(MiscUtils.USER + "Appdata\\Local\\Microsoft\\Windows\\Explorer"), cbsTempPath = new File("%systemdrive%\\Windows\\CbsTemp"),
+	     windowsLogsPath = new File("%systemdrive%\\Windows\\Logs"), fileExplorerCachePath = new File(MiscUtils.USER + "Appdata\\Roaming\\Microsoft\\Windows\\Recent\\AutomaticDestinations"),
+	     netCachePath = new File(MiscUtils.USER + "Appdata\\Local\\Microsoft\\Windows\\INetCache\\IE"), DXShaderCachePath = new File(MiscUtils.USER + "Appdata\\Local\\D3DSCache"),
+	     windowsUpdateCachePath = new File("%systemdrive%\\Windows\\SoftwareDistribution\\Download");
 
-        if (Config.emptyRecycleBin) MiscUtils.executeCmdCommand("cmd /C rd /s /q %systemdrive%\\$RECYCLE.BIN");
+        if (Config.emptyRecycleBin) FileUtils.deleteFilesFromDirectory(recycleBinPath);
 
-        int cleanedFiles;
+        if (Config.cleanDNSCache) MiscUtils.executeCmdCommand("cmd /C start ipconfig /flushdns");
 
-        //Execute the cleaning asynchronously
-        try {
+	if (Config.clearWindowsTemp) FileUtils.deleteFilesFromDirectory(windowsTempPath);
 
-            cleanedFiles = CompletableFuture
-                    .supplyAsync(() -> Arrays.stream(Directories.values())
-                            .mapToInt(directory -> FileUtils.deleteFilesFromDirectory(new File(directory.getDirectory())))
-                            .sum()).get();
+	if (Config.cleanLocalTemp) FileUtils.deleteFilesFromDirectory(localTempPath);
 
-        } catch (ExecutionException | InterruptedException e) {
+	if (Config.cleanPrefetch) FileUtils.deleteFilesFromDirectory(prefetchPath);
 
-            JOptionPane.showMessageDialog(null,
-                    "Couldn't clean temporary files asynchronously",
-                    "BootCleaner",
-                    JOptionPane.ERROR_MESSAGE);
+	if (Config.cleanThumbnailCache) FileUtils.deleteFilesFromDirectory(thumbnailCachePath);
 
-            return;
-        }
+	if (Config.cleanCBSTemp) FileUtils.deleteFilesFromDirectory(cbsTempPath);
 
-        if (Config.showMessage) {
+	if (Config.cleanWindowsLogs) FileUtils.deleteFilesFromDirectory(windowsLogsPath);
 
-            JOptionPane.showMessageDialog(null,
-                    "Cleaned " + cleanedFiles + " temporary files",
-                    "BootCleaner",
-                    JOptionPane.PLAIN_MESSAGE);
-        }
+	if (Config.cleanFileExplorerCache) FileUtils.deleteFilesFromDirectory(fileExplorerCachePath);
+
+	if (Config.cleanNetCache) FileUtils.deleteFilesFromDirectory(netCachePath);
+
+	if (Config.cleanDXShaderCache) FileUtils.deleteFilesFromDirectory(DXShaderCachePath);
+
+	if (Config.cleanWindowsUpdateCache) FileUtils.deleteFilesFromDirectory(windowsUpdateCachePath);
     }
 }
