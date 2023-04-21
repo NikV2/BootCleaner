@@ -57,7 +57,7 @@ public class Main {
             JOptionPane.showMessageDialog(null,
                     "Cleaned " + cleanedFiles + " temporary files",
                     "BootCleaner",
-                    JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.SUCCESS_MESSAGE);
         }
     }
 }
