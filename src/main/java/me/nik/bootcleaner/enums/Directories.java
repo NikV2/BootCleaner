@@ -3,6 +3,11 @@ package me.nik.bootcleaner.enums;
 import me.nik.bootcleaner.utils.MiscUtils;
 
 public enum Directories {
+
+    AMD_LOGS(MiscUtils.ROOT + "Program Files\\AMD\\CIM\\Log"),
+
+    PACKAGE_CACHE(MiscUtils.ROOT + "ProgramData\\Package Cache"),
+
     PREFETCH(MiscUtils.ROOT + "Windows\\Prefetch"),
 
     THUMBNAIL_CACHE(MiscUtils.USER + "AppData\\Local\\Microsoft\\Windows\\Explorer"),
