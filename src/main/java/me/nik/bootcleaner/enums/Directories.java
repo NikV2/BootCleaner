@@ -12,11 +12,20 @@ public enum Directories {
 
     THUMBNAIL_CACHE(MiscUtils.USER + "AppData\\Local\\Microsoft\\Windows\\Explorer"),
 
+    CRASH_DUMPS(MiscUtils.USER + "AppData\\Local\\CrashDumps"),
+
+    CRYPTNET_URL_CACHE_CONTENT(MiscUtils.USER + "AppData\\LocalLow\\Microsoft\\CryptnetUrlCache\\Content"),
+    CRYPTNET_URL_CACHE_METADATA(MiscUtils.USER + "AppData\\LocalLow\\Microsoft\\CryptnetUrlCache\\MetaData"),
+
     CBS_TEMP(MiscUtils.ROOT + "Windows\\CbsTemp"),
 
     WINDOWS_LOGS(MiscUtils.ROOT + "Windows\\Logs"),
 
     WINDOWS_TEMP(MiscUtils.ROOT + "Windows\\temp"),
+
+    WINDOWS_KERNEL_REPORTS(MiscUtils.ROOT + "Windows\\LiveKernelReports"),
+
+    WINDOWS_MINIDUMP(MiscUtils.ROOT + "Windows\\Minidump"),
 
     FILE_EXPLORER_CACHE(MiscUtils.USER + "AppData\\Roaming\\Microsoft\\Windows\\Recent\\AutomaticDestinations"),
 
